@@ -47,3 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Shooting
+    uniqueID: 3461360021
+    locked: 0
