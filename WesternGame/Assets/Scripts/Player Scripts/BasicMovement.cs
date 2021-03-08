@@ -6,12 +6,12 @@ public class BasicMovement : MonoBehaviour
 {
     public Animator animator;
     public float speed = 2f;
-    
+
     void Start()
     {
 
     }
-    
+
     void Update()
     {
 
@@ -20,8 +20,14 @@ public class BasicMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Magnitude", movement.magnitude);
-        
+
         transform.position = transform.position + movement * Time.deltaTime * speed;
 
+    }
+
+    public void Die()
+    {
+        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
