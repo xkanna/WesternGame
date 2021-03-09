@@ -30,6 +30,11 @@ public class AnimalPatrol : MonoBehaviour
     
     void Update()
     {
+        Move();
+    }
+
+    private void Move()
+    {
         if (!sadled)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveSpot.localPosition, speed * Time.deltaTime);

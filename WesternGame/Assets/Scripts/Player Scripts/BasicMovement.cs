@@ -6,29 +6,26 @@ using UnityEngine.UI;
 public class BasicMovement : MonoBehaviour
 {
     public Animator animator;
+    public Rigidbody2D rb;
     public float health = 200;
+    public Text healthText;
     public float speed = 2f;
     public bool speededUp = false;
     public float speedTimeLeft = 5;
     public float timeLeft = 80;
-    public Text scoreText;
+    public Text timeLeftText;
+    public Text endGametext;
 
     void Start()
     {
-        scoreText.text = "0";
+        timeLeftText.text = "0";
+        healthText.text = health.ToString();
     }
 
     void Update()
     {
-
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Magnitude", movement.magnitude);
-
-        transform.position = transform.position + movement * Time.deltaTime * speed;
-
+        Move();
+       
         if (speededUp)
         {
             SpeedTimer();
@@ -37,9 +34,21 @@ public class BasicMovement : MonoBehaviour
         GameTimer();
     }
 
+    private void Move()
+    {
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
+
+        rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
+    }
+
     public void Die()
     {
         Destroy(gameObject);
+        endGametext.text = "DEFEAT";
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -47,7 +56,7 @@ public class BasicMovement : MonoBehaviour
         
         if (hitInfo.gameObject.tag == "Horse")
         {
-            //Set the parent of that object to the platform
+            
             hitInfo.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
             hitInfo.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
@@ -58,6 +67,14 @@ public class BasicMovement : MonoBehaviour
                 horse.sadledX = transform.position.x;
                 SpeedUp();
             }
+        }
+        else if (hitInfo.gameObject.tag == "Snake")
+        {
+            Die();
+        }
+        else if (hitInfo.gameObject.tag == "Hole")
+        {
+            Die();
         }
     }
 
@@ -74,6 +91,7 @@ public class BasicMovement : MonoBehaviour
         if (speedTimeLeft < 0)
         {
             speededUp = false;
+            speedTimeLeft = 5;
             speed = 2f;
         }
     }
@@ -81,7 +99,7 @@ public class BasicMovement : MonoBehaviour
     void GameTimer()
     {
         timeLeft -= Time.deltaTime;
-        scoreText.text = timeLeft.ToString();
+        timeLeftText.text = timeLeft.ToString("0.00");
         if (timeLeft < 0)
         {
             Destroy(gameObject);
@@ -92,6 +110,7 @@ public class BasicMovement : MonoBehaviour
     {
         health -= damage;
 
+        healthText.text = health.ToString();
         if (health <= 0)
         {
             Die();
