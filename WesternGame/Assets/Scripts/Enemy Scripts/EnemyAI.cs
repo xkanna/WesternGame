@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     
-    private float speed = 1f;
+    public float speed = 1f;
     private float maximumDistance = 0.3f;
     private float minimumDistance = 5f;
     private Transform target;
@@ -23,5 +23,16 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
-    
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log(hitInfo.name);
+
+        BasicMovement player = hitInfo.GetComponent<BasicMovement>();
+        if (player != null)
+        {
+            player.Die();
+        }
+    }
+
 }

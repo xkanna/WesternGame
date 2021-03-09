@@ -8,18 +8,6 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void takeDamage(int damage)
     {
         health -= damage;
@@ -35,16 +23,5 @@ public class Enemy : MonoBehaviour
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-
-
-    void OnTriggerEnter2D(Collider2D hitInfo)
-    {
-        Debug.Log(hitInfo.name);
-
-        BasicMovement enemy = hitInfo.GetComponent<BasicMovement>();
-        if (enemy != null)
-        {
-            enemy.Die();
-        }
-    }
+    
 }

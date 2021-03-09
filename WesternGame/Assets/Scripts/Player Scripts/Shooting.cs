@@ -7,11 +7,6 @@ public class Shooting : MonoBehaviour
     public Transform firepoint;
     public GameObject bullet;
     
-    void Start()
-    {
-        
-    }
-    
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
