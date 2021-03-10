@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Horse
+  - Environment
+  - Hole
+  - Snake
+  - Mirror
+  - Ammo
   layers:
   - Default
   - TransparentFX

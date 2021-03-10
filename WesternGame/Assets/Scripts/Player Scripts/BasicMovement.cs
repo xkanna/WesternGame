@@ -12,7 +12,7 @@ public class BasicMovement : MonoBehaviour
     public float speed = 2f;
     public bool speededUp = false;
     public float speedTimeLeft = 5;
-    public float timeLeft = 80;
+    public float timeLeft = 120;
     public Text timeLeftText;
     public Text endGametext;
 
@@ -76,6 +76,7 @@ public class BasicMovement : MonoBehaviour
         {
             Die();
         }
+        
     }
 
     void SpeedUp()

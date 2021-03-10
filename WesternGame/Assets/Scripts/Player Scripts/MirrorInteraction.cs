@@ -34,7 +34,7 @@ public class MirrorInteraction : MonoBehaviour
 
         if (hitInfo.gameObject.tag == "Mirror")
         {
-            
+            Win();
         }
     }
 
