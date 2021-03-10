@@ -12,12 +12,6 @@ public class MirrorInteraction : MonoBehaviour
     {
         SpawnMirror();
     }
-    
-    void Update()
-    {
-        
-    }
-
 
     void SpawnMirror()
     {

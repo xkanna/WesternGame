@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
     private Transform cowboyTransform;
 
     void Start()
     {
         cowboyTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-    
-
-    void Update()
-    {
-        
     }
 
     private void LateUpdate()

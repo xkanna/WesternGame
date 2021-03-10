@@ -25,7 +25,13 @@ public class ShootingEnemy : MonoBehaviour
 
     void Update()
     {
+        CheckDistance();
+        CheckTimeBTWShots();
+        Flip();
+    }
 
+    void CheckDistance()
+    {
         if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -40,10 +46,15 @@ public class ShootingEnemy : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
             shooting = true;
-        } else
+        }
+        else
         {
             shooting = false;
         }
+    }
+
+    void CheckTimeBTWShots()
+    {
 
         if (timeBtwShots <= 0 && shooting)
         {
@@ -55,8 +66,6 @@ public class ShootingEnemy : MonoBehaviour
         {
             timeBtwShots -= Time.deltaTime;
         }
-
-        Flip();
     }
 
     public void TakeDamage(int damage)
