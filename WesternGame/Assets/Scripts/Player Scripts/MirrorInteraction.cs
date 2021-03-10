@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MirrorInteraction : MonoBehaviour
 {
@@ -34,6 +35,6 @@ public class MirrorInteraction : MonoBehaviour
 
     void Win()
     {
-        endGameText.text = "WIN!";
+        SceneManager.LoadScene(4);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BasicMovement : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class BasicMovement : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
-        endGametext.text = "DEFEAT";
+        SceneManager.LoadScene(3);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -103,7 +104,7 @@ public class BasicMovement : MonoBehaviour
         timeLeftText.text = timeLeft.ToString("0.00");
         if (timeLeft < 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
