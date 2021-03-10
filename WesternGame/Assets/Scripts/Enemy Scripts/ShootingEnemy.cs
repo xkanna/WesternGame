@@ -11,6 +11,7 @@ public class ShootingEnemy : MonoBehaviour
 
     public GameObject arrow;
     public Transform player;
+    
 
     private float timeBtwShots;
     public float startTimeBtwShots = 2;

@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
     public Text numberOfBulletsText;
     private int numberOfBullets;
+    public AudioSource source;
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class Shooting : MonoBehaviour
         {
             numberOfBulletsText.text = numberOfBullets.ToString();
             Instantiate(bullet, firepoint.position, firepoint.rotation);
+            source.Play();
         }
 
     }
